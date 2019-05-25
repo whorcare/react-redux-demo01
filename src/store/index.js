@@ -1,11 +1,11 @@
 import  { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducer' // 记录本
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
 
 // redux-devtools-extension 高级配置 只需复制
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk)
+  // applyMiddleware(thunk)
 );
 
 // 图书管理员

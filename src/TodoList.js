@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import store from './store/index'
 import 'antd/dist/antd.css';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getTodoList } from './store/actionCreators'
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getTodoList, initListAction } from './store/actionCreators'
 import TodoListUI from './TodoListUI'
+import axios from 'axios'
 
 class TodoList extends Component {
 
@@ -29,8 +30,20 @@ class TodoList extends Component {
   }
 
   componentDidMount() {
-    const action = getTodoList();
-    store.dispatch(action);
+    // redux-thunk 使用
+    console.log(getTodoList());
+    // const action = getTodoList();
+    // store.dispatch(action);
+
+    // redux-saga 使用
+    axios.get('./list.json').then((res) => {
+      console.log(res);
+    }).catch(() => {
+      console.log('接口假数据2');
+      const data = ['1', '2', '3'];
+      const action = initListAction(data);
+      store.dispatch(action);
+    })
   }
 
   handleInputChange(e) {
